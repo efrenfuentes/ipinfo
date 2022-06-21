@@ -1,4 +1,4 @@
-FROM golang:1.18-alpine
+FROM golang:1.18-alpine AS build
 
 WORKDIR /app
 
@@ -10,6 +10,12 @@ COPY . ./
 
 RUN go build -o bin/ipinfo cmd/api/main.go
 
+FROM alpine
+
+WORKDIR /
+
+COPY --from=build /app/bin/ipinfo /ipinfo
+
 EXPOSE 4000
 
-CMD ["./bin/ipinfo"]
+ENTRYPOINT ["/ipinfo"]
