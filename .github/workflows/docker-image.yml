@@ -24,4 +24,4 @@ jobs:
             tags: efrenfuentes/ipinfo:latest
             load: true
       - name: Runs the Efren Action
-        uses: efrenfuentes/container-action@v0.1
+        uses: efrenfuentes/container-action@v0.2
