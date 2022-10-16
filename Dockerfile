@@ -18,4 +18,6 @@ COPY --from=build /app/bin/ipinfo /ipinfo
 
 EXPOSE 4000
 
-ENTRYPOINT ["/ipinfo"]
+ENV IPINFO_ACCESS_TOKEN=""
+
+ENTRYPOINT /ipinfo --ipinfo_access_token=$IPINFO_ACCESS_TOKEN

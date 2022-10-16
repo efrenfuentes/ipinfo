@@ -8,7 +8,7 @@ const version = "1.0.0"
 
 type Config struct {
 	Port int
-	IPInfoKey  string
+	IpinfoAccessToken  string
 }
 
 type API struct {
