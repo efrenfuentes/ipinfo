@@ -22,5 +22,5 @@ func (api *API) Routes() http.Handler {
 	router.HandlerFunc(http.MethodGet, "/", api.GetIpHandler)
 	router.HandlerFunc(http.MethodGet, "/healthcheck", api.HealthcheckHandler)
 
-	return middleware.EnableCORS(middleware.LimitRate(router))
+	return middleware.EnableCORS(router)
 }
