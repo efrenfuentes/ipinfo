@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net"
 	"net/http"
+	"strings"
 
 	"github.com/efrenfuentes/ipinfo/internal/ipinfo_client"
 )
@@ -18,13 +19,7 @@ func (api *API) GetIpHandler(w http.ResponseWriter, r *http.Request) {
 	// list.  We do this because this is always the *origin* IP address, which
 	// is the *true* IP of the user.  For more information on this, see the
 	// Wikipedia page: https://en.wikipedia.org/wiki/X-Forwarded-For
-	// ip := net.ParseIP(strings.Split(r.Header.Get("X-Forwarded-For"), ",")[0]).String()
-
-	ip, _, err := net.SplitHostPort(r.RemoteAddr)
-	if err != nil {
-		api.ServerErrorResponse(w, r, err)
-		return
-	}
+	ip := net.ParseIP(strings.Split(r.Header.Get("X-Forwarded-For"), ",")[0]).String()
 
 	// If the IP address is empty, then we'll just return an empty string.
 	if ip == "" {
