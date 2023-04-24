@@ -28,7 +28,7 @@ func (api *API) GetIpInfoHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var env Envelope
-	
+
 	env = Envelope{
 		"ip": ip,
 		"city": details.City,
@@ -43,7 +43,7 @@ func (api *API) GetIpInfoHandler(w http.ResponseWriter, r *http.Request) {
 	err = api.WriteJSON(w, http.StatusOK, env, nil)
 	if err != nil {
 		api.ServerErrorResponse(w, r, err)
-	}	
+	}
 
 	return
 }

@@ -14,6 +14,10 @@ func main() {
 	flag.StringVar(&cfg.IpinfoAccessToken, "ipinfo_access_token", "", "IPInfo Access Token")
 	flag.Parse()
 
+	if cfg.IpinfoAccessToken == "" {
+		cfg.IpinfoAccessToken = os.Getenv("IPINFO_ACCESS_TOKEN")
+	}
+
 	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
 
 	api := &api.API{
@@ -23,6 +27,6 @@ func main() {
 
 	err := api.Serve()
 	if err != nil {
-		logger.Fatal(err) 
+		logger.Fatal(err)
 	}
 }
